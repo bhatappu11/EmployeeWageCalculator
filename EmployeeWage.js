@@ -83,3 +83,9 @@ function findFindFirstFullTimeWage(dailyWage){
 }
 
 console.log("First time full time wage earned : "+mapDayWithWageArr.find(findFindFirstFullTimeWage));
+
+//uc7 - check if every element of full time wage is truely holding full time wage
+function isAllFullTimeWage(dailyWage) {
+    return dailyWage.includes("160");
+}
+console.log("Check all element have full time wage: "+fullDayWageArr.every(isAllFullTimeWage));
