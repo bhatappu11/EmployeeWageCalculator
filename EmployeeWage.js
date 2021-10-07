@@ -116,3 +116,16 @@ let totalHours = Array.from(empDailyHrsMap.values()).reduce(totalWages,0);
 let totalSalary = empDailyWageArr.filter(dailyWage => dailyWage > 0)
                     .reduce(totalWages,0);
 console.log("Using arrow- employee wage = "+" Total hours: "+ totalHours +" Total wage: "+ totalSalary);
+
+let nonWorkingDays = new Array();
+let fullWorkingDays = new Array();
+let partWorkingDays = new Array();
+
+empDailyHrsMap.forEach((value,key,map) => {
+    if(value == 8) fullWorkingDays.push(key);
+    else if(value == 4) partWorkingDays.push(key);
+    else nonWorkingDays.push(key);
+});
+console.log("Full working days: "+fullWorkingDays);
+console.log("Part working days: "+partWorkingDays);
+console.log("Non working days: "+nonWorkingDays);
