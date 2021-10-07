@@ -1,10 +1,12 @@
 class EmployeePayrollData {
         
     //constructor
-    constructor(id, name, salary) {
-        this.id = id;
-        this.name = name;
-        this.salary = salary;
+    constructor(...params) {
+        this.id = params[0];
+        this.name = params[1];
+        this.salary = params[2];
+        this.gender = params[3];
+        this.startDate = params[4];
     }
     //getter and setter
     get name() { return this._name; }
@@ -19,10 +21,21 @@ class EmployeePayrollData {
     set salary(salary) {
         this._salary = salary;
     }
+    get gender() { return this._gender; }
+    set gender(gender) {
+        this._gender = gender;
+    }
+    get startDate() { return this._startDate; }
+    set startDate(startDate) {
+        this._startDate = startDate;
+    }
 
     //method
     toString() {
-        return "id="+ this.id +", name="+ this.name +", salary="+ this.salary;
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const empDate = this.startDate === undefined ? "undefined" :
+                        this.startDate.toLocaleDateString("en-US", options);
+        return "id="+ this.id +", name="+ this.name +", salary="+ this.salary+", gender="+ this.gender+", start date="+ empDate;
     }
 }
 
@@ -31,3 +44,5 @@ console.log(employeePayrollData.toString());
 employeePayrollData.id = 0;
 employeePayrollData.name = "Jeff";
 console.log(employeePayrollData.toString());
+let newEmployeePayrollData = new EmployeePayrollData(2, "Terry", 30000, "F", new Date());
+console.log(newEmployeePayrollData.toString());
