@@ -153,4 +153,25 @@ function calculateDailyWage(empHrs){
         );
     }
     console.log("Showing daily hours worked and wage earned: "+empDailyHrsAndWageArr);
+    //uc10 object function along with arrow
+    let totalWage = empDailyHrsAndWageArr
+                    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyWage > 0)
+                    .reduce((totalWages,dailyHrsAndWage) => totalWages += dailyHrsAndWage.dailyWage, 0);
+    let totalHours = empDailyHrsAndWageArr
+                    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyWage >0)
+                    .reduce((totalHours,dailyHrsAndWage) => totalHours += dailyHrsAndWage.dailyHours,0);
+    console.log("Total hours: "+totalHours+" Total wage: "+totalWage);
+
+    process.stdout.write("\nLogging full work days")
+    empDailyHrsAndWageArr.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 8)
+                            .forEach(dailyHrsAndWage => process.stdout.write(dailyHrsAndWage.toString()));
+    let partWorkingDayStrArr = empDailyHrsAndWageArr
+                                .filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 4)
+                                .map(dailyHrsAndWage => dailyHrsAndWage.toString());
+    console.log("\n\nPart working days strings "+partWorkingDayStrArr);
+
+    let nonWorkingDayNums = empDailyHrsAndWageArr
+                            .filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 0)
+                            .map(dailyHrsAndWage => dailyHrsAndWage.dayNum);
+    console.log("\nNon working days "+nonWorkingDayNums);
 }
